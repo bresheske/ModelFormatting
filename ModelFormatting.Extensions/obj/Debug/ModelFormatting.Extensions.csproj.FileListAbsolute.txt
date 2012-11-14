@@ -1,0 +1,5 @@
+D:\Projects\ModelFormatting\ModelFormatting.Extensions\obj\Debug\ModelFormatting.Extensions.csprojResolveAssemblyReference.cache
+D:\Projects\ModelFormatting\ModelFormatting.Extensions\bin\Debug\ModelFormatting.Extensions.dll
+D:\Projects\ModelFormatting\ModelFormatting.Extensions\bin\Debug\ModelFormatting.Extensions.pdb
+D:\Projects\ModelFormatting\ModelFormatting.Extensions\obj\Debug\ModelFormatting.Extensions.dll
+D:\Projects\ModelFormatting\ModelFormatting.Extensions\obj\Debug\ModelFormatting.Extensions.pdb

@@ -1,0 +1,11 @@
+D:\Projects\ModelFormatting\ModelFormatting\bin\Release\ModelFormatting.dll
+D:\Projects\ModelFormatting\ModelFormatting\bin\Release\ModelFormatting.pdb
+D:\Projects\ModelFormatting\ModelFormatting\obj\Release\ModelFormatting.dll
+D:\Projects\ModelFormatting\ModelFormatting\obj\Release\ModelFormatting.pdb
+D:\Projects\ModelFormatting\ModelFormatting\obj\Release\ModelFormatting.csprojResolveAssemblyReference.cache
+D:\Projects\ModelFormatting\ModelFormatting\bin\Release\ModelFormatting.Extensions.dll
+D:\Projects\ModelFormatting\ModelFormatting\bin\Release\ModelFormatting.Services.dll
+D:\Projects\ModelFormatting\ModelFormatting\bin\Release\nunit.framework.dll
+D:\Projects\ModelFormatting\ModelFormatting\bin\Release\ModelFormatting.Extensions.pdb
+D:\Projects\ModelFormatting\ModelFormatting\bin\Release\ModelFormatting.Services.pdb
+D:\Projects\ModelFormatting\ModelFormatting\bin\Release\nunit.framework.xml
