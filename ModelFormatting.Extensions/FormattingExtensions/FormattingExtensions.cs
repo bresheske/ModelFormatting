@@ -8,8 +8,14 @@ namespace ModelFormatting.Extensions.FormattingExtensions
 {
     public static class FormattingExtensions
     {
+        #region Constants
+
         public static string DEFAULT_FORMAT = "{Key}: {Value}";
         public static string DEFAULT_DELIMITER = ", ";
+
+        #endregion
+
+        #region Normal Formatting
 
         /// <summary>
         /// Extension for Formatting models (objects) into strings.
@@ -25,7 +31,7 @@ namespace ModelFormatting.Extensions.FormattingExtensions
         public static string FormatModel(this object model, string format)
         {
             var output = format;
-            foreach(Match m in FindFormatMatches(format))
+            foreach (Match m in FindFormatMatches(format))
             {
                 var prop = model.GetType().GetProperty(m.Groups["Key"].Value);
                 var propformat = m.Groups["Format"].Value;
@@ -36,41 +42,120 @@ namespace ModelFormatting.Extensions.FormattingExtensions
             return output;
         }
 
-        public static string FormatModelReflective(this object model, string header, string format, string delimiter, string footer)
+        #endregion
+
+        #region Reflective Formatting
+
+        /// <summary>
+        /// Extension to format an object into a string.
+        /// The method uses reflection and looks at properties.
+        /// 
+        /// Models can use the ComponentModel.DataAnnotations.DisplayFormatAttribute
+        /// to define formats for particular properties.
+        /// </summary>
+        /// <param name="model">
+        /// Object to be formatted.
+        /// </param>
+        /// <param name="header">
+        /// String to come before any properties.
+        /// </param>
+        /// <param name="format">
+        /// String to format each property. Needs to utilize {Key} and {Value}.
+        /// Example (xml-style): <{Key}>{Value}</{Key}>
+        /// </param>
+        /// <param name="delimiter">
+        /// String to come between each formatted property.
+        /// Common usage is '\n' or '<br />'
+        /// </param>
+        /// <param name="footer">
+        /// String to come after the formatted properties.
+        /// </param>
+        /// <returns>Formatted string representing the model given.</returns>
+        public static string FormatModelReflective(this object model, string header, string format, string delimiter,
+                                                   string footer)
         {
             var output = new StringBuilder();
             output.Append(header);
 
             var props = model.GetType().GetProperties().ToList();
             props.ForEach(prop =>
-            {
-                var val = format.Replace("{Key}", prop.Name).Replace("{Value}", 
-                    FormatProperty(prop, model, string.Empty));
-                output.Append(val);
-                if (prop != props.Last())
-                    output.Append(delimiter);
-            });
+                {
+                    var val = format.Replace("{Key}", prop.Name).Replace("{Value}",
+                                                                         FormatProperty(prop, model, string.Empty));
+                    output.Append(val);
+                    if (prop != props.Last())
+                        output.Append(delimiter);
+                });
 
             output.Append(footer);
             return output.ToString();
         }
 
+        /// <summary>
+        /// Extension to format an object into a string.
+        /// The method uses reflection and looks at properties.
+        /// 
+        /// Models can use the ComponentModel.DataAnnotations.DisplayFormatAttribute
+        /// to define formats for particular properties.
+        /// </summary>
+        /// <param name="model">
+        /// Object to be formatted.
+        /// </param>
+        /// <param name="header">
+        /// String to come before any properties.
+        /// </param>
+        /// <param name="delimiter">
+        /// String to come between each formatted property.
+        /// Common usage is '\n' or '<br />'
+        /// </param>
+        /// <param name="footer">
+        /// String to come after the formatted properties.
+        /// </param>
+        /// <returns>Formatted string representing the model given.</returns>
         public static string FormatModelReflective(this object model, string header, string delimiter, string footer)
         {
             return model.FormatModelReflective(header, DEFAULT_FORMAT, delimiter, footer);
         }
 
+        /// <summary>
+        /// Extension to format an object into a string.
+        /// The method uses reflection and looks at properties.
+        /// 
+        /// Models can use the ComponentModel.DataAnnotations.DisplayFormatAttribute
+        /// to define formats for particular properties.
+        /// </summary>
+        /// <param name="model">
+        /// Object to be formatted.
+        /// </param>
+        /// <param name="delimiter">
+        /// String to come between each formatted property.
+        /// Common usage is '\n' or '<br />'
+        /// </param>
+        /// <returns>Formatted string representing the model given.</returns>
         public static string FormatModelReflective(this object model, string delimiter)
         {
             return model.FormatModelReflective(string.Empty, DEFAULT_FORMAT, delimiter, string.Empty);
         }
 
+        /// <summary>
+        /// Extension to format an object into a string.
+        /// The method uses reflection and looks at properties.
+        /// 
+        /// Models can use the ComponentModel.DataAnnotations.DisplayFormatAttribute
+        /// to define formats for particular properties.
+        /// </summary>
+        /// <param name="model">
+        /// Object to be formatted.
+        /// </param>
+        /// <returns>Formatted string representing the model given.</returns>
         public static string FormatModelReflective(this object model)
         {
             return model.FormatModelReflective(string.Empty, DEFAULT_FORMAT, DEFAULT_DELIMITER, string.Empty);
         }
 
+        #endregion
 
+        #region Private Methods
 
         private static MatchCollection FindFormatMatches(string format)
         {
@@ -94,18 +179,21 @@ namespace ModelFormatting.Extensions.FormattingExtensions
             /* Highest Precedence: Format is Defined in String. */
             if (!string.IsNullOrEmpty(format))
                 keyformat = "{0:" + format + "}";
-            /* Precedence: Format is Defined in Annotation. */
+                /* Precedence: Format is Defined in Annotation. */
             else if (model.GetType().GetProperty(key) != null
-                && model.GetType().GetProperty(key)
-                .GetCustomAttributes(typeof(DisplayFormatAttribute), true)
-                .Any())
+                     && model.GetType().GetProperty(key)
+                             .GetCustomAttributes(typeof (DisplayFormatAttribute), true)
+                             .Any())
             {
-                keyformat = "{0:" + ((DisplayFormatAttribute)(model.GetType().GetProperty(key)
-                    .GetCustomAttributes(typeof(DisplayFormatAttribute), true).First()))
-                    .DataFormatString + "}";
+                keyformat = "{0:" + ((DisplayFormatAttribute) (model.GetType().GetProperty(key)
+                                                                    .GetCustomAttributes(
+                                                                        typeof (DisplayFormatAttribute), true).First()))
+                                        .DataFormatString + "}";
             }
 
             return keyformat;
         }
+
+        #endregion
     }
 }
