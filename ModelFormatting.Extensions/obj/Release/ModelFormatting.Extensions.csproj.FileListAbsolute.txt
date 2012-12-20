@@ -4,6 +4,5 @@ D:\Projects\ModelFormatting\ModelFormatting.Extensions\obj\Release\ModelFormatti
 D:\Projects\ModelFormatting\ModelFormatting.Extensions\obj\Release\ModelFormatting.Extensions.pdb
 C:\Workspace\modelformatting\ModelFormatting.Extensions\bin\Release\ModelFormatting.Extensions.dll
 C:\Workspace\modelformatting\ModelFormatting.Extensions\bin\Release\ModelFormatting.Extensions.pdb
-C:\Workspace\modelformatting\ModelFormatting.Extensions\obj\Release\ModelFormatting.Extensions.csprojResolveAssemblyReference.cache
 C:\Workspace\modelformatting\ModelFormatting.Extensions\obj\Release\ModelFormatting.Extensions.dll
 C:\Workspace\modelformatting\ModelFormatting.Extensions\obj\Release\ModelFormatting.Extensions.pdb
