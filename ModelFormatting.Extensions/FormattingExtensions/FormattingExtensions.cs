@@ -1,9 +1,14 @@
-﻿using System.Text.RegularExpressions;
+﻿using System.Linq;
+using System.Text;
+using System.Text.RegularExpressions;
 
 namespace ModelFormatting.Extensions.FormattingExtensions
 {
     public static class FormattingExtensions
     {
+        public static string DEFAULT_FORMAT = "{Key}: {Value}";
+        public static string DEFAULT_DELIMITER = "\n";
+
         /// <summary>
         /// Extension for Formatting models (objects) into strings.
         /// 
@@ -33,14 +38,37 @@ namespace ModelFormatting.Extensions.FormattingExtensions
             return output;
         }
 
-        public static string FormatModel(this object model, string header, string format, string delimiter, string footer)
+        public static string FormatModelReflective(this object model, string header, string format, string delimiter, string footer)
         {
-            
+            var output = new StringBuilder();
+            output.Append(header);
+
+            var props = model.GetType().GetProperties().ToList();
+            props.ForEach(prop =>
+            {
+                var tempmodel = new { Key = prop.Name, Value = prop.GetValue(model) };
+                output.Append(tempmodel.FormatModel(format));
+                if (prop != props.Last())
+                    output.Append(delimiter);
+            });
+
+            output.Append(footer);
+            return output.ToString();
         }
 
-        public static string FormatModel(this object model, string header, string delimiter, string footer)
+        public static string FormatModelReflective(this object model, string header, string delimiter, string footer)
         {
-            return model.FormatModel(header, "{Key}: {Value}", delimiter, footer);
+            return model.FormatModelReflective(header, DEFAULT_FORMAT, delimiter, footer);
+        }
+
+        public static string FormatModelReflective(this object model, string delimiter)
+        {
+            return model.FormatModelReflective(string.Empty, DEFAULT_FORMAT, delimiter, string.Empty);
+        }
+
+        public static string FormatModelReflective(this object model)
+        {
+            return model.FormatModelReflective(string.Empty, DEFAULT_FORMAT, DEFAULT_DELIMITER, string.Empty);
         }
 
 

@@ -64,7 +64,7 @@ namespace ModelFormatting.Tests
         }
 
         [Test]
-        public void DelimitedFormattingTests()
+        public void ReflectiveFormattingTests()
         {
             var obj = new
                         {
@@ -72,8 +72,14 @@ namespace ModelFormatting.Tests
                             String = "Bananas",
                         };
 
-            Assert.AreEqual(obj.FormatModel("<email>", "<br />", "</email>"), 
-                "<email>Name10: Bobby<br />String: Bananas</email>");
+            Assert.AreEqual(obj.FormatModelReflective(), 
+                "Name10: Bobby\nString: Bananas");
+            Assert.AreEqual(obj.FormatModelReflective("<br/>"),
+                "Name10: Bobby<br/>String: Bananas");
+            Assert.AreEqual(obj.FormatModelReflective("<email>", "<br/>", "</email>"),
+                "<email>Name10: Bobby<br/>String: Bananas</email>");
+            Assert.AreEqual(obj.FormatModelReflective("<email>", "<{Key}>{Value}</{Key}>", "<br/>", "</email>"),
+                "<email><Name10>Bobby</Name10><br/><String>Bananas</String></email>");
         }
     }
 }
