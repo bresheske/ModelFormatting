@@ -1,5 +1,6 @@
 ﻿using System;
 using ModelFormatting.Extensions.FormattingExtensions;
+using ModelFormatting.Models;
 using NUnit.Framework;
 
 namespace ModelFormatting.Tests
@@ -72,14 +73,35 @@ namespace ModelFormatting.Tests
                             String = "Bananas",
                         };
 
-            Assert.AreEqual(obj.FormatModelReflective(), 
-                "Name10: Bobby\nString: Bananas");
-            Assert.AreEqual(obj.FormatModelReflective("<br/>"),
-                "Name10: Bobby<br/>String: Bananas");
-            Assert.AreEqual(obj.FormatModelReflective("<email>", "<br/>", "</email>"),
-                "<email>Name10: Bobby<br/>String: Bananas</email>");
-            Assert.AreEqual(obj.FormatModelReflective("<email>", "<{Key}>{Value}</{Key}>", "<br/>", "</email>"),
-                "<email><Name10>Bobby</Name10><br/><String>Bananas</String></email>");
+            Assert.AreEqual("Name10: Bobby, String: Bananas", obj.FormatModelReflective());
+            Assert.AreEqual("Name10: Bobby<br/>String: Bananas", obj.FormatModelReflective("<br/>"));
+            Assert.AreEqual("<email>Name10: Bobby<br/>String: Bananas</email>", obj.FormatModelReflective("<email>", "<br/>", "</email>"));
+            Assert.AreEqual("<email><Name10>Bobby</Name10><br/><String>Bananas</String></email>", obj.FormatModelReflective("<email>", "<{Key}>{Value}</{Key}>", "<br/>", "</email>"));
+        }
+
+        [Test]
+        public void ReflectiveDataAnnotationTests()
+        {
+            var obj = new TestModelWithAttributes()
+                          {
+                              Age = 25,
+                              BirthDate = new DateTime(1987, 04, 03),
+                              Name = "Bobby"
+                          };
+
+            Assert.AreEqual("Name: Bobby BirthDate: 4/3/1987 Age: 25.00", 
+                obj.FormatModel("Name: {Name} BirthDate: {BirthDate} Age: {Age}"));
+            Assert.AreEqual("Name: Bobby BirthDate: 4/3/1987 Age: 25.0000",
+                obj.FormatModel("Name: {Name} BirthDate: {BirthDate} Age: {Age:0.0000}"));
+
+            Assert.AreEqual("Name: Bobby, BirthDate: 4/3/1987, Age: 25.00",
+                obj.FormatModelReflective());
+            Assert.AreEqual("Name: Bobby<br/>BirthDate: 4/3/1987<br/>Age: 25.00",
+                obj.FormatModelReflective("<br/>"));
+            Assert.AreEqual("<email>Name: Bobby<br/>BirthDate: 4/3/1987<br/>Age: 25.00</email>",
+                obj.FormatModelReflective("<email>", "<br/>", "</email>"));
+            Assert.AreEqual("<email><Name>Bobby</Name><br/><BirthDate>4/3/1987</BirthDate><br/><Age>25.00</Age></email>",
+                obj.FormatModelReflective("<email>", "<{Key}>{Value}</{Key}>", "<br/>", "</email>"));
         }
     }
 }
