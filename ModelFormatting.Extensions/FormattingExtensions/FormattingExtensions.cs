@@ -18,8 +18,7 @@ namespace ModelFormatting.Extensions.FormattingExtensions
         public static string FormatModel(this object model, string format)
         {
             var output = format;
-            var patt = new Regex(@"\{(?<Key>[^:|}]*):?(?<Format>[^\}]*)\}");
-            foreach(Match m in patt.Matches(format))
+            foreach(Match m in FindFormatMatches(format))
             {
                 var keyformat = string.IsNullOrEmpty(m.Groups["Format"].Value)
                     ? "{0}"
@@ -32,6 +31,24 @@ namespace ModelFormatting.Extensions.FormattingExtensions
                 output = output.Replace(m.Captures[0].Value, string.Format(keyformat, val));
             }
             return output;
+        }
+
+        public static string FormatModel(this object model, string header, string format, string delimiter, string footer)
+        {
+            
+        }
+
+        public static string FormatModel(this object model, string header, string delimiter, string footer)
+        {
+            return model.FormatModel(header, "{Key}: {Value}", delimiter, footer);
+        }
+
+
+
+        private static MatchCollection FindFormatMatches(string format)
+        {
+            var patt = new Regex(@"\{(?<Key>[^:|}]*):?(?<Format>[^\}]*)\}");
+            return patt.Matches(format);
         }
     }
 }

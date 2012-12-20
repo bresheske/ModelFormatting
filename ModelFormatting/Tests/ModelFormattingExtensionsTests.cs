@@ -62,5 +62,18 @@ namespace ModelFormatting.Tests
             Assert.AreEqual("$_()/@1 11/13/2012 $24.54 1504388483838394594.00 12", 
                 obj.FormatModel("{Name10} {Date:d} {Money:C} {Ticks:0.00} {SomeInt}"));
         }
+
+        [Test]
+        public void DelimitedFormattingTests()
+        {
+            var obj = new
+                        {
+                            Name10 = "Bobby",
+                            String = "Bananas",
+                        };
+
+            Assert.AreEqual(obj.FormatModel("<email>", "<br />", "</email>"), 
+                "<email>Name10: Bobby<br />String: Bananas</email>");
+        }
     }
 }
