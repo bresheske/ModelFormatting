@@ -10,8 +10,8 @@ namespace ModelFormatting.Extensions.FormattingExtensions
     {
         #region Constants
 
-        public static string DEFAULT_FORMAT = "{Key}: {Value}";
-        public static string DEFAULT_DELIMITER = ", ";
+        public const string DEFAULT_FORMAT = "{Key}: {Value}";
+        public const string DEFAULT_DELIMITER = ", ";
 
         #endregion
 
@@ -23,7 +23,7 @@ namespace ModelFormatting.Extensions.FormattingExtensions
         /// An example would be object {FirstName="Harry", LastName="Potter"} 
         /// with format "Hello, {FirstName} {LastName}, my name is Luna.".
         /// Also simple string formatting works.
-        /// {0:C}, 2m would produce $2.00
+        /// {Money:C}, 2m would produce $2.00
         /// </summary>
         /// <param name="model"></param>
         /// <param name="format"></param>
@@ -56,9 +56,6 @@ namespace ModelFormatting.Extensions.FormattingExtensions
         /// <param name="model">
         /// Object to be formatted.
         /// </param>
-        /// <param name="header">
-        /// String to come before any properties.
-        /// </param>
         /// <param name="format">
         /// String to format each property. Needs to utilize {Key} and {Value}.
         /// Example (xml-style): <{Key}>{Value}</{Key}>
@@ -67,15 +64,10 @@ namespace ModelFormatting.Extensions.FormattingExtensions
         /// String to come between each formatted property.
         /// Common usage is '\n' or '<br />'
         /// </param>
-        /// <param name="footer">
-        /// String to come after the formatted properties.
-        /// </param>
         /// <returns>Formatted string representing the model given.</returns>
-        public static string FormatModelReflective(this object model, string header, string format, string delimiter,
-                                                   string footer)
+        public static string FormatModelReflective(this object model, string format, string delimiter)
         {
             var output = new StringBuilder();
-            output.Append(header);
 
             var props = model.GetType().GetProperties().ToList();
             props.ForEach(prop =>
@@ -87,7 +79,6 @@ namespace ModelFormatting.Extensions.FormattingExtensions
                         output.Append(delimiter);
                 });
 
-            output.Append(footer);
             return output.ToString();
         }
 
@@ -101,40 +92,14 @@ namespace ModelFormatting.Extensions.FormattingExtensions
         /// <param name="model">
         /// Object to be formatted.
         /// </param>
-        /// <param name="header">
-        /// String to come before any properties.
-        /// </param>
-        /// <param name="delimiter">
-        /// String to come between each formatted property.
-        /// Common usage is '\n' or '<br />'
-        /// </param>
-        /// <param name="footer">
-        /// String to come after the formatted properties.
+        /// <param name="format">
+        /// String to format each property. Needs to utilize {Key} and {Value}.
+        /// Example (xml-style): <{Key}>{Value}</{Key}>
         /// </param>
         /// <returns>Formatted string representing the model given.</returns>
-        public static string FormatModelReflective(this object model, string header, string delimiter, string footer)
+        public static string FormatModelReflective(this object model, string format)
         {
-            return model.FormatModelReflective(header, DEFAULT_FORMAT, delimiter, footer);
-        }
-
-        /// <summary>
-        /// Extension to format an object into a string.
-        /// The method uses reflection and looks at properties.
-        /// 
-        /// Models can use the ComponentModel.DataAnnotations.DisplayFormatAttribute
-        /// to define formats for particular properties.
-        /// </summary>
-        /// <param name="model">
-        /// Object to be formatted.
-        /// </param>
-        /// <param name="delimiter">
-        /// String to come between each formatted property.
-        /// Common usage is '\n' or '<br />'
-        /// </param>
-        /// <returns>Formatted string representing the model given.</returns>
-        public static string FormatModelReflective(this object model, string delimiter)
-        {
-            return model.FormatModelReflective(string.Empty, DEFAULT_FORMAT, delimiter, string.Empty);
+            return model.FormatModelReflective(format, string.Empty);
         }
 
         /// <summary>
@@ -150,7 +115,7 @@ namespace ModelFormatting.Extensions.FormattingExtensions
         /// <returns>Formatted string representing the model given.</returns>
         public static string FormatModelReflective(this object model)
         {
-            return model.FormatModelReflective(string.Empty, DEFAULT_FORMAT, DEFAULT_DELIMITER, string.Empty);
+            return model.FormatModelReflective(DEFAULT_FORMAT, DEFAULT_DELIMITER);
         }
 
         #endregion

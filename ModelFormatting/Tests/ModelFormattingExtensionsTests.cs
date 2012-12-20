@@ -73,10 +73,12 @@ namespace ModelFormatting.Tests
                             String = "Bananas",
                         };
 
-            Assert.AreEqual("Name10: Bobby, String: Bananas", obj.FormatModelReflective());
-            Assert.AreEqual("Name10: Bobby<br/>String: Bananas", obj.FormatModelReflective("<br/>"));
-            Assert.AreEqual("<email>Name10: Bobby<br/>String: Bananas</email>", obj.FormatModelReflective("<email>", "<br/>", "</email>"));
-            Assert.AreEqual("<email><Name10>Bobby</Name10><br/><String>Bananas</String></email>", obj.FormatModelReflective("<email>", "<{Key}>{Value}</{Key}>", "<br/>", "</email>"));
+            Assert.AreEqual("Name10: Bobby, String: Bananas", 
+                obj.FormatModelReflective());
+            Assert.AreEqual("<Name10>Bobby</Name10><String>Bananas</String>", 
+                obj.FormatModelReflective("<{Key}>{Value}</{Key}>"));
+            Assert.AreEqual("<Name10>Bobby</Name10><br /><String>Bananas</String>",
+                obj.FormatModelReflective("<{Key}>{Value}</{Key}>", "<br />"));
         }
 
         [Test]
@@ -96,12 +98,10 @@ namespace ModelFormatting.Tests
 
             Assert.AreEqual("Name: Bobby, BirthDate: 4/3/1987, Age: 25.00",
                 obj.FormatModelReflective());
-            Assert.AreEqual("Name: Bobby<br/>BirthDate: 4/3/1987<br/>Age: 25.00",
-                obj.FormatModelReflective("<br/>"));
-            Assert.AreEqual("<email>Name: Bobby<br/>BirthDate: 4/3/1987<br/>Age: 25.00</email>",
-                obj.FormatModelReflective("<email>", "<br/>", "</email>"));
-            Assert.AreEqual("<email><Name>Bobby</Name><br/><BirthDate>4/3/1987</BirthDate><br/><Age>25.00</Age></email>",
-                obj.FormatModelReflective("<email>", "<{Key}>{Value}</{Key}>", "<br/>", "</email>"));
+            Assert.AreEqual("<Name>Bobby</Name><BirthDate>4/3/1987</BirthDate><Age>25.00</Age>",
+                obj.FormatModelReflective("<{Key}>{Value}</{Key}>"));
+            Assert.AreEqual("<Name>Bobby</Name><br /><BirthDate>4/3/1987</BirthDate><br /><Age>25.00</Age>",
+                obj.FormatModelReflective("<{Key}>{Value}</{Key}>", "<br />"));
         }
     }
 }
