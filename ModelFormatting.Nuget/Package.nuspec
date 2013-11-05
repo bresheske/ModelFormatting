@@ -1,29 +1,28 @@
 <?xml version="1.0"?>
 <package >
   <metadata>
-    <id>ModelFormatting.Nuget</id>
-    <version>1.0.0</version>
-    <title>ModelFormatting.Nuget</title>
-    <authors>brandon</authors>
-    <owners></owners>
+    <id>ModelFormatting.Extensions</id>
+    <version>1.0.1</version>
+    <title>Model Formatting</title>
+    <authors>bresheske</authors>
+    <owners>bresheske</owners>
     <description>
-      A long description of the package. This shows up in the right pane of the Add Package Dialog as well as in the Package Manager Console when listing packages using the Get-Package command.
+      A small extension library which allows developers to convert property-based objects into strings.
     </description>
     <releaseNotes>
+     - 1.0.1: Fixed a bug, which now allows for '{}'characters when a property is not found.
+     - 1.0: Initial Release
     </releaseNotes>
     <summary>
-      A short description of the package. If specified, this shows up in the middle pane of the Add Package Dialog. If not specified, a truncated version of the description is used instead.
+      A small extension library which allows developers to convert property-based objects into strings.
     </summary>
     <language>en-US</language>
-    <projectUrl>https://nuget.org/packages/ModelFormatting.Nuget</projectUrl>
+    <projectUrl>http://resheske.net/projects/model-formatting</projectUrl>
     <iconUrl>https://nuget.org/Content/Images/packageDefaultIcon-50x50.png</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <licenseUrl>http://opensource.org/licenses/Apache-2.0</licenseUrl>
     <copyright>Copyright  2013</copyright>
     <dependencies>
-        <group targetFramework="net40">
-          <dependency id="log4net" version="1.2.10" />
-        </group>
     </dependencies>
     <references></references>
     <tags></tags>
