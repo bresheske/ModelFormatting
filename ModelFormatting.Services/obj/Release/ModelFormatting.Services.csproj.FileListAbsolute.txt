@@ -1,8 +1,0 @@
-D:\Projects\ModelFormatting\ModelFormatting.Services\bin\Release\ModelFormatting.Services.dll
-D:\Projects\ModelFormatting\ModelFormatting.Services\bin\Release\ModelFormatting.Services.pdb
-D:\Projects\ModelFormatting\ModelFormatting.Services\obj\Release\ModelFormatting.Services.dll
-D:\Projects\ModelFormatting\ModelFormatting.Services\obj\Release\ModelFormatting.Services.pdb
-C:\Workspace\modelformatting\ModelFormatting.Services\bin\Release\ModelFormatting.Services.dll
-C:\Workspace\modelformatting\ModelFormatting.Services\bin\Release\ModelFormatting.Services.pdb
-C:\Workspace\modelformatting\ModelFormatting.Services\obj\Release\ModelFormatting.Services.dll
-C:\Workspace\modelformatting\ModelFormatting.Services\obj\Release\ModelFormatting.Services.pdb

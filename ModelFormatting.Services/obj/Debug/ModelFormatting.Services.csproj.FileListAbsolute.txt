@@ -1,5 +1,0 @@
-D:\Projects\ModelFormatting\ModelFormatting.Services\bin\Debug\ModelFormatting.Services.dll
-D:\Projects\ModelFormatting\ModelFormatting.Services\bin\Debug\ModelFormatting.Services.pdb
-D:\Projects\ModelFormatting\ModelFormatting.Services\obj\Debug\ModelFormatting.Services.csprojResolveAssemblyReference.cache
-D:\Projects\ModelFormatting\ModelFormatting.Services\obj\Debug\ModelFormatting.Services.dll
-D:\Projects\ModelFormatting\ModelFormatting.Services\obj\Debug\ModelFormatting.Services.pdb
