@@ -65,7 +65,7 @@ namespace ModelFormatting.Tests
         }
 
         [Test]
-        public void ReflectiveFormattingTests()
+        public void ReflectiveFormatting()
         {
             var obj = new
                         {
@@ -82,7 +82,7 @@ namespace ModelFormatting.Tests
         }
 
         [Test]
-        public void ReflectiveDataAnnotationTests()
+        public void ReflectiveDataAnnotation()
         {
             var obj = new TestModelWithAttributes()
                           {
@@ -102,6 +102,24 @@ namespace ModelFormatting.Tests
                 obj.FormatModelReflective("<{Key}>{Value}</{Key}>"));
             Assert.AreEqual("<Name>Bobby</Name><br /><BirthDate>4/3/1987</BirthDate><br /><Age>25.00</Age>",
                 obj.FormatModelReflective("<{Key}>{Value}</{Key}>", "<br />"));
+        }
+
+        [Test]
+        public void ReservedCharacters()
+        {
+            var obj = new TestModelWithAttributes()
+            {
+                Age = 25,
+                BirthDate = new DateTime(1987, 04, 03),
+                Name = "Bobby"
+            };
+
+            Assert.AreEqual("Name: Bobby BirthDate: 4/3/1987 Age: 25.00 {Oranges}",
+                obj.FormatModel("Name: {Name} BirthDate: {BirthDate} Age: {Age} {Oranges}"));
+            Assert.AreEqual("Name: Bobby BirthDate: 4/3/1987 Age: 25.00 {{Oranges}}",
+                obj.FormatModel("Name: {Name} BirthDate: {BirthDate} Age: {Age} {{Oranges}}"));
+            Assert.AreEqual("Name: Bobby BirthDate: 4/3/1987 Age: 25.00 {SomeJsonObject: 'Organic'}",
+                obj.FormatModel("Name: {Name} BirthDate: {BirthDate} Age: {Age} {SomeJsonObject: 'Organic'}"));
         }
     }
 }

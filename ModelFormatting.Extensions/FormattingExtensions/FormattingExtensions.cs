@@ -34,6 +34,9 @@ namespace ModelFormatting.Extensions.FormattingExtensions
             foreach (Match m in FindFormatMatches(format))
             {
                 var prop = model.GetType().GetProperty(m.Groups["Key"].Value);
+                if (prop == null)
+                    continue;
+
                 var propformat = m.Groups["Format"].Value;
                 var val = FormatProperty(prop, model, propformat);
 
