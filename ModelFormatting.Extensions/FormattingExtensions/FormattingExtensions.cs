@@ -142,12 +142,12 @@ namespace ModelFormatting.Extensions.FormattingExtensions
 
         private static string GetPropertyKeyFormat(object model, string key, string format)
         {
-            /* Format Precedence Rules */
+            // Format Precedence Rules 
             var keyformat = "{0}";
-            /* Highest Precedence: Format is Defined in String. */
+            // Highest Precedence: Format is Defined in String. 
             if (!string.IsNullOrEmpty(format))
                 keyformat = "{0:" + format + "}";
-                /* Precedence: Format is Defined in Annotation. */
+            // Precedence: Format is Defined in Annotation.
             else if (model.GetType().GetProperty(key) != null
                      && model.GetType().GetProperty(key)
                              .GetCustomAttributes(typeof (DisplayFormatAttribute), true)

@@ -1,7 +1,7 @@
-﻿using System;
-using ModelFormatting.Extensions.FormattingExtensions;
+﻿using ModelFormatting.Extensions.FormattingExtensions;
 using ModelFormatting.Models;
 using NUnit.Framework;
+using System;
 
 namespace ModelFormatting.Tests
 {
