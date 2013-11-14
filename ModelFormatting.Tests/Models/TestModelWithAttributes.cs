@@ -1,7 +1,7 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace ModelFormatting.Models
+namespace ModelFormatting.Tests.Models
 {
     public class TestModelWithAttributes
     {

@@ -4,7 +4,7 @@ using System.Reflection;
 using System.Text;
 using System.Text.RegularExpressions;
 
-namespace ModelFormatting.Extensions.FormattingExtensions
+namespace ModelFormatting.Extensions
 {
     public static class FormattingExtensions
     {
@@ -148,15 +148,14 @@ namespace ModelFormatting.Extensions.FormattingExtensions
             if (!string.IsNullOrEmpty(format))
                 keyformat = "{0:" + format + "}";
             // Precedence: Format is Defined in Annotation.
-            else if (model.GetType().GetProperty(key) != null
-                     && model.GetType().GetProperty(key)
-                             .GetCustomAttributes(typeof (DisplayFormatAttribute), true)
-                             .Any())
+            else if (model.GetType().GetProperty(key) != null && model.GetType().GetProperty(key)
+                .GetCustomAttributes(typeof (DisplayFormatAttribute), true)
+                .Any())
             {
                 keyformat = "{0:" + ((DisplayFormatAttribute) (model.GetType().GetProperty(key)
-                                                                    .GetCustomAttributes(
-                                                                        typeof (DisplayFormatAttribute), true).First()))
-                                        .DataFormatString + "}";
+                    .GetCustomAttributes(
+                        typeof (DisplayFormatAttribute), true).First()))
+                            .DataFormatString + "}";
             }
 
             return keyformat;

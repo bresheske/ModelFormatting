@@ -1,5 +1,5 @@
-﻿using ModelFormatting.Extensions.FormattingExtensions;
-using ModelFormatting.Models;
+﻿using ModelFormatting.Extensions;
+using ModelFormatting.Tests.Models;
 using NUnit.Framework;
 using System;
 
@@ -53,13 +53,13 @@ namespace ModelFormatting.Tests
         public void Robustness()
         {
             var obj = new
-                          {
-                              Name10 = "$_()/@1",
-                              Date = new DateTime(2012, 11, 13),
-                              Money = 24.54m,
-                              Ticks = 1504388483838394594L,
-                              SomeInt = 12
-                          };
+            {
+                Name10 = "$_()/@1",
+                Date = new DateTime(2012, 11, 13),
+                Money = 24.54m,
+                Ticks = 1504388483838394594L,
+                SomeInt = 12
+            };
             Assert.AreEqual("$_()/@1 11/13/2012 $24.54 1504388483838394594.00 12", 
                 obj.FormatModel("{Name10} {Date:d} {Money:C} {Ticks:0.00} {SomeInt}"));
         }
@@ -68,10 +68,10 @@ namespace ModelFormatting.Tests
         public void ReflectiveFormatting()
         {
             var obj = new
-                        {
-                            Name10 = "Bobby",
-                            String = "Bananas",
-                        };
+            {
+                Name10 = "Bobby",
+                String = "Bananas",
+            };
 
             Assert.AreEqual("Name10: Bobby, String: Bananas", 
                 obj.FormatModelReflective());
@@ -85,11 +85,11 @@ namespace ModelFormatting.Tests
         public void ReflectiveDataAnnotation()
         {
             var obj = new TestModelWithAttributes()
-                          {
-                              Age = 25,
-                              BirthDate = new DateTime(1987, 04, 03),
-                              Name = "Bobby"
-                          };
+            {
+                Age = 25,
+                BirthDate = new DateTime(1987, 04, 03),
+                Name = "Bobby"
+            };
 
             Assert.AreEqual("Name: Bobby BirthDate: 4/3/1987 Age: 25.00", 
                 obj.FormatModel("Name: {Name} BirthDate: {BirthDate} Age: {Age}"));
