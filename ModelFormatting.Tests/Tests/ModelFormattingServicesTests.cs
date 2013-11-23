@@ -15,9 +15,11 @@ namespace ModelFormatting.Tests.Tests
         [Test, TestCaseSource("IOCInjecter")]
         public void IOCLayer(IModelFormatter formatter)
         {
-            var obj = new { Name = "Scott", Address = "101 Elm Street" };
-            var format = formatter.FormatModel(obj, "Name: {Name} Address: {Address}");
-            Assert.AreEqual("Name: Scott Address: 101 Elm Street", format);
+            var obj = new { Name = "Scott", Address = "101 Elm Street", Money = 10.10m };
+            var format = formatter.FormatModel(obj, "Name: {Name}, Address: {Address}");
+            Assert.AreEqual("Name: Scott, Address: 101 Elm Street", format);
+            format = formatter.FormatModel(obj, "Name: {Name}, Money: {Money:C}");
+            Assert.AreEqual("Name: Scott, Money: $10.10", format);
         }
 
         private object[] IOCInjecter()
