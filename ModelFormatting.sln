@@ -14,6 +14,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ModelFormatting.Nuget", "Mo
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ModelFormatting.Tests", "ModelFormatting.Tests\ModelFormatting.Tests.csproj", "{B175A58A-8620-43BE-B397-CBBF76B73905}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ModelFormatting.WebTests", "ModelFormatting.WebTests\ModelFormatting.WebTests.csproj", "{B2A071D0-A9DB-4E98-8A69-0BB0190A2964}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -32,6 +34,10 @@ Global
 		{B175A58A-8620-43BE-B397-CBBF76B73905}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B175A58A-8620-43BE-B397-CBBF76B73905}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B175A58A-8620-43BE-B397-CBBF76B73905}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B2A071D0-A9DB-4E98-8A69-0BB0190A2964}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B2A071D0-A9DB-4E98-8A69-0BB0190A2964}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B2A071D0-A9DB-4E98-8A69-0BB0190A2964}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B2A071D0-A9DB-4E98-8A69-0BB0190A2964}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
