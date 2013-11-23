@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>ModelFormatting.Extensions</id>
-    <version>1.1.0</version>
+    <version>1.2.0</version>
     <title>Model Formatting</title>
     <authors>bresheske</authors>
     <owners>bresheske</owners>
@@ -10,6 +10,7 @@
       A small library which allows developers to convert POCO objects into strings.
     </description>
     <releaseNotes>
+      - 1.2: Removed reflective formatting. Did not provide any useful functionality. Updated tests, source, and docs.
       - 1.1: Added a services layer for inversion of control (IOC) injections. Use IModelFormatter and DefaultModelFormatter.
       - 1.0.1: Fixed a bug, which now allows for '{}' characters when a property is not found.
       - 1.0: Initial Release
