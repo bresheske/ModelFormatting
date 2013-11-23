@@ -65,23 +65,6 @@ namespace ModelFormatting.Tests
         }
 
         [Test]
-        public void ReflectiveFormatting()
-        {
-            var obj = new
-            {
-                Name10 = "Bobby",
-                String = "Bananas",
-            };
-
-            Assert.AreEqual("Name10: Bobby, String: Bananas", 
-                obj.FormatModelReflective());
-            Assert.AreEqual("<Name10>Bobby</Name10><String>Bananas</String>", 
-                obj.FormatModelReflective("<{Key}>{Value}</{Key}>"));
-            Assert.AreEqual("<Name10>Bobby</Name10><br /><String>Bananas</String>",
-                obj.FormatModelReflective("<{Key}>{Value}</{Key}>", "<br />"));
-        }
-
-        [Test]
         public void ReflectiveDataAnnotation()
         {
             var obj = new TestModelWithAttributes()
@@ -95,13 +78,6 @@ namespace ModelFormatting.Tests
                 obj.FormatModel("Name: {Name} BirthDate: {BirthDate} Age: {Age}"));
             Assert.AreEqual("Name: Bobby BirthDate: 4/3/1987 Age: 25.0000",
                 obj.FormatModel("Name: {Name} BirthDate: {BirthDate} Age: {Age:0.0000}"));
-
-            Assert.AreEqual("Name: Bobby, BirthDate: 4/3/1987, Age: 25.00",
-                obj.FormatModelReflective());
-            Assert.AreEqual("<Name>Bobby</Name><BirthDate>4/3/1987</BirthDate><Age>25.00</Age>",
-                obj.FormatModelReflective("<{Key}>{Value}</{Key}>"));
-            Assert.AreEqual("<Name>Bobby</Name><br /><BirthDate>4/3/1987</BirthDate><br /><Age>25.00</Age>",
-                obj.FormatModelReflective("<{Key}>{Value}</{Key}>", "<br />"));
         }
 
         [Test]
