@@ -38,6 +38,8 @@ namespace ModelFormatting.WebTests.Controllers
                 "is {Age} years old, " +
                 "and somedouble is {SomeDouble}");
 
+            ViewBag.Stuff = formatted;
+
             return View();
         }
     }
