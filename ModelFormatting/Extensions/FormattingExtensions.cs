@@ -22,26 +22,13 @@ namespace ModelFormatting.Extensions
         /// <returns>Formatted String</returns>
         public static string FormatModel(this object model, string format)
         {
-            var output = format;
-            foreach (Match m in FindFormatMatches(format))
-            {
-                var prop = model.GetType().GetProperty(m.Groups["Key"].Value);
-                if (prop == null)
-                    continue;
-
-                var propformat = m.Groups["Format"].Value;
-                var val = FormatProperty(prop, model, propformat);
-
-                output = output.Replace(m.Captures[0].Value, val);
-            }
-            return output;
+            
         }
 
 
         private static MatchCollection FindFormatMatches(string format)
         {
-            var patt = new Regex(@"\{(?<Key>[^:|}]*):?(?<Format>[^\}]*)\}");
-            return patt.Matches(format);
+            
         }
 
         private static string FormatProperty(PropertyInfo prop, object model, string format)
@@ -55,24 +42,7 @@ namespace ModelFormatting.Extensions
 
         private static string GetPropertyKeyFormat(object model, string key, string format)
         {
-            // Format Precedence Rules 
-            var keyformat = "{0}";
-            // Highest Precedence: Format is Defined in String. 
-            if (!string.IsNullOrEmpty(format))
-                keyformat = "{0:" + format + "}";
-            // Precedence: Format is Defined in Annotation.
-            else if (model.GetType().GetProperty(key) != null && model.GetType().GetProperty(key)
-                .GetCustomAttributes(typeof (DisplayFormatAttribute), true)
-                .Any())
-            {
-                keyformat = "{0:" + ((DisplayFormatAttribute) (model.GetType().GetProperty(key)
-                    .GetCustomAttributes(
-                        typeof (DisplayFormatAttribute), true).First()))
-                            .DataFormatString + "}";
-            }
-
-            return keyformat;
+            
         }
-
     }
 }
