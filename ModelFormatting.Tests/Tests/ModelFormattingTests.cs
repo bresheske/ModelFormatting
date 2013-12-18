@@ -13,9 +13,7 @@ namespace ModelFormatting.Tests
         [TestFixtureSetUp]
         public void Init()
         {
-            formatter = new DefaultModelFormatter(new DefaultFormatParser(), 
-                new DefaultKeyFormatPrecedenceProvider(),
-                new DefaultPropertyProvider());
+            formatter = new DefaultModelFormatter();
         }
 
         [Test]

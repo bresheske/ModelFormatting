@@ -18,9 +18,7 @@ namespace ModelFormatting.Tests.Tests
         {
             // Speed tracking objects.
             var sw = new Stopwatch();
-            var formatter = new DefaultModelFormatter(new DefaultFormatParser(), 
-                new DefaultKeyFormatPrecedenceProvider(),
-                new DefaultPropertyProvider());
+            var formatter = new DefaultModelFormatter();
 
             // First, test the speed of some normal formatting. (DateTime seems to take the longest)
             var obj = new TestModelWithAttributes{ BirthDate = new DateTime(2013, 12, 20), Age = 20, Money = 45.54m };
