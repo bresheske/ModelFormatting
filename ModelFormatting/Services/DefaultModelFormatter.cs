@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Text.RegularExpressions;
 using System.Reflection;
+using System.Threading;
 
 namespace ModelFormatting.Services
 {
@@ -19,7 +20,15 @@ namespace ModelFormatting.Services
             keyformatprovider = keyformat;
         }
 
-        public virtual string FormatModel(object model, string format)
+        /// <summary>
+        /// Formats Teh models!
+        /// Override if you wish!
+        /// </summary>
+        /// <param name="model"></param>
+        /// <param name="format"></param>
+        /// <param name="culture"></param>
+        /// <returns></returns>
+        public virtual string FormatModel(object model, string format, IFormatProvider culture)
         {
             var output = format;
             foreach (Match m in formatparser.FindFormatMatches(format))
@@ -29,20 +38,25 @@ namespace ModelFormatting.Services
                     continue;
 
                 var propformat = m.Groups["Format"].Value;
-                var val = FormatProperty(prop, model, propformat);
+                var val = FormatProperty(prop, model, propformat, culture);
 
                 output = output.Replace(m.Captures[0].Value, val);
             }
             return output;
         }
 
-        protected string FormatProperty(PropertyInfo prop, object model, string format)
+        public string FormatModel(object model, string format)
+        {
+            return FormatModel(model, format, Thread.CurrentThread.CurrentCulture);
+        }
+
+        protected string FormatProperty(PropertyInfo prop, object model, string format, IFormatProvider culture)
         {
             if (prop == null)
                 return string.Empty;
             var keyformat = keyformatprovider.GetPropertyKeyFormat(model, prop.Name, format);
             var val = prop.GetValue(model);
-            return string.Format(keyformat, val);
+            return string.Format(culture, keyformat, val);
         }
     }
 }
