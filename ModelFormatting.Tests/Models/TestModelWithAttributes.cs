@@ -12,5 +12,8 @@ namespace ModelFormatting.Tests.Models
 
         [DisplayFormat(DataFormatString = "0.00")]
         public int Age { get; set; }
+
+        [DisplayFormat(DataFormatString = "c")]
+        public decimal Money { get; set; }
     }
 }

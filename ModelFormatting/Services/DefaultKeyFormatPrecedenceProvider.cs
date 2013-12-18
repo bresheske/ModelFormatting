@@ -13,8 +13,12 @@ namespace ModelFormatting.Services
         {
             // Format Precedence Rules 
             var keyformat = "{0}";
-            // Highest Precedence: Format is Defined in String. 
-            if (!string.IsNullOrEmpty(format))
+            // Highest Precedence: It's cached in the Core.
+            var cacheformat = Core.GetPropertyMappings(model.GetType());
+            if (cacheformat != null && cacheformat.ContainsKey(key))
+                keyformat = cacheformat[key];
+            // Precedence: Format is Defined in String. 
+            else if (!string.IsNullOrEmpty(format))
                 keyformat = "{0:" + format + "}";
             // Precedence: Format is Defined in Annotation.
             else if (model.GetType().GetProperty(key) != null && model.GetType().GetProperty(key)

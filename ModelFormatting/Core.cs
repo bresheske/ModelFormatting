@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Reflection;
 using System.Text;
@@ -28,11 +29,11 @@ namespace ModelFormatting
             }
         }
 
-        private Dictionary<Type, IEnumerable<PropertyInfo>> TypeStore;
+        private Dictionary<Type, Dictionary<string, string>> TypeStore;
 
         private Core()
         {
-            TypeStore = new Dictionary<Type, IEnumerable<PropertyInfo>>();
+            TypeStore = new Dictionary<Type, Dictionary<string, string>>();
         }
 
         /// <summary>
@@ -48,18 +49,33 @@ namespace ModelFormatting
             if (GetPropertyMappings<TModel>() != null)
                 return;
 
+            var value = new Dictionary<string, string>();
+
             // Loop through.
-            Instance.TypeStore.Add(typeof(TModel), typeof(TModel).GetProperties().ToArray());
+            foreach (var p in typeof(TModel).GetProperties())
+            {
+                var attribs = p.GetCustomAttributes(typeof(DisplayFormatAttribute), true);
+                if (attribs.Any())
+                {
+                    // Found an attribute, cache it.
+                    var keyformat = "{0:" + ((DisplayFormatAttribute)attribs.First()).DataFormatString + "}";
+                    value.Add(p.Name, keyformat);
+                }
+            }
+
+            // Add it if we have any values.
+            if (value.Keys.Any())
+                Instance.TypeStore.Add(typeof(TModel), value);
         }
 
-        public static IEnumerable<PropertyInfo> GetPropertyMappings(Type type)
+        public static Dictionary<string,string> GetPropertyMappings(Type type)
         {
-            return Instance.TypeStore.ContainsKey(type) 
+            return Instance.TypeStore.ContainsKey(type)
                 ? Instance.TypeStore[type]
                 : null;
         }
 
-        public static IEnumerable<PropertyInfo> GetPropertyMappings<TModel>()
+        public static Dictionary<string,string> GetPropertyMappings<TModel>()
             where TModel : class
         {
             return GetPropertyMappings(typeof(TModel));

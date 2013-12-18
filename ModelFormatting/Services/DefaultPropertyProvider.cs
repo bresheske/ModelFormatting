@@ -22,8 +22,7 @@ namespace ModelFormatting.Services
 
         public IEnumerable<PropertyInfo> GetTypeProperties(Type type)
         {
-            return Core.GetPropertyMappings(type)
-                ?? type.GetProperties().ToArray();
+            return type.GetProperties().ToArray();
         }
     }
 }
