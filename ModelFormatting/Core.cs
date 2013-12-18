@@ -54,7 +54,9 @@ namespace ModelFormatting
 
         public static IEnumerable<PropertyInfo> GetPropertyMappings(Type type)
         {
-            return Instance.TypeStore[type];
+            return Instance.TypeStore.ContainsKey(type) 
+                ? Instance.TypeStore[type]
+                : null;
         }
 
         public static IEnumerable<PropertyInfo> GetPropertyMappings<TModel>()
