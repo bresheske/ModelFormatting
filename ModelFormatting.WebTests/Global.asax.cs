@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ModelFormatting.WebTests.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -22,6 +23,9 @@ namespace ModelFormatting.WebTests
 
             Bootstrapper.Initialise();
             AutoMapperBootstrapper.Initialise();
+
+            // Register Models Ahead of Time.
+            ModelFormatting.Core.RegisterModel<SampleObjectModel>();
         }
     }
 }
