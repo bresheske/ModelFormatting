@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ModelFormatting.Services
 {
-    interface IKeyFormatPrecedenceProvider
+    public interface IKeyFormatPrecedenceProvider
     {
         string GetPropertyKeyFormat(object model, string key, string format);
     }
