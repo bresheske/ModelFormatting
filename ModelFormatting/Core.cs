@@ -28,11 +28,11 @@ namespace ModelFormatting
             }
         }
 
-        private Dictionary<Type, Dictionary<string, PropertyInfo>>();
+        private Dictionary<Type, Dictionary<string, PropertyInfo>> typestore;
 
         private Core()
         {
-
+            typestore = new Dictionary<Type, Dictionary<string, PropertyInfo>>();
         }
 
         /// <summary>

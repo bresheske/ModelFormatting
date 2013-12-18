@@ -21,7 +21,7 @@ namespace ModelFormatting.Tests.Tests
         }
 
         [Test]
-        public void TestCulture()
+        public void ThaiCulture()
         {
             var obj = new { Date = new DateTime(2013, 12, 20) };
             var format = formatter.FormatModel(obj, "Date: {Date}");
