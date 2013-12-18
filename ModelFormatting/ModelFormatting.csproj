@@ -50,9 +50,11 @@
     <Compile Include="Services\DefaultFormatParser.cs" />
     <Compile Include="Services\DefaultKeyFormatPrecedenceProvider.cs" />
     <Compile Include="Services\DefaultModelFormatter.cs" />
+    <Compile Include="Services\DefaultPropertyProvider.cs" />
     <Compile Include="Services\IFormatParser.cs" />
     <Compile Include="Services\IKeyFormatPrecedenceProvider.cs" />
     <Compile Include="Services\IModelFormatter.cs" />
+    <Compile Include="Services\IPropertyProvider.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

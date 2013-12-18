@@ -28,11 +28,11 @@ namespace ModelFormatting
             }
         }
 
-        private Dictionary<Type, Dictionary<string, PropertyInfo>> typestore;
+        private Dictionary<Type, IEnumerable<PropertyInfo>> TypeStore;
 
         private Core()
         {
-            typestore = new Dictionary<Type, Dictionary<string, PropertyInfo>>();
+            TypeStore = new Dictionary<Type, IEnumerable<PropertyInfo>>();
         }
 
         /// <summary>
@@ -44,7 +44,23 @@ namespace ModelFormatting
         public static void RegisterModel<TModel>()
             where TModel : class
         {
+            // Already exist? kick out early.
+            if (GetPropertyMappings<TModel>() != null)
+                return;
 
+            // Loop through.
+            Instance.TypeStore.Add(typeof(TModel), typeof(TModel).GetProperties().ToArray());
+        }
+
+        public static IEnumerable<PropertyInfo> GetPropertyMappings(Type type)
+        {
+            return Instance.TypeStore[type];
+        }
+
+        public static IEnumerable<PropertyInfo> GetPropertyMappings<TModel>()
+            where TModel : class
+        {
+            return GetPropertyMappings(typeof(TModel));
         }
     }
 }

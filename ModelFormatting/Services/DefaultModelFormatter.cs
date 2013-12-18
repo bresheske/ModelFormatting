@@ -13,11 +13,15 @@ namespace ModelFormatting.Services
     {
         private readonly IFormatParser formatparser;
         private readonly IKeyFormatPrecedenceProvider keyformatprovider;
+        private readonly IPropertyProvider propertyprovider;
 
-        public DefaultModelFormatter(IFormatParser parser, IKeyFormatPrecedenceProvider keyformat)
+        public DefaultModelFormatter(IFormatParser parser, 
+            IKeyFormatPrecedenceProvider keyformat,
+            IPropertyProvider props)
         {
             formatparser = parser;
             keyformatprovider = keyformat;
+            propertyprovider = props;
         }
 
         /// <summary>
@@ -33,7 +37,7 @@ namespace ModelFormatting.Services
             var output = format;
             foreach (Match m in formatparser.FindFormatMatches(format))
             {
-                var prop = model.GetType().GetProperty(m.Groups["Key"].Value);
+                var prop =   model.GetType().GetProperty(m.Groups["Key"].Value);
                 if (prop == null)
                     continue;
 
