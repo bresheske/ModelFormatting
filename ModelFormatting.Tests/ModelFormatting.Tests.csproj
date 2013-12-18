@@ -47,8 +47,7 @@
   <ItemGroup>
     <Compile Include="Models\TestModelWithAttributes.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Tests\ModelFormattingExtensionsTests.cs" />
-    <Compile Include="Tests\ModelFormattingServicesTests.cs" />
+    <Compile Include="Tests\ModelFormattingTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
