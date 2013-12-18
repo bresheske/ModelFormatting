@@ -104,5 +104,24 @@ namespace ModelFormatting.Tests
             Assert.AreEqual("Name: Bobby BirthDate: 4/3/1987 Age: 25.00 {SomeJsonObject: 'Organic'}",
                 formatter.FormatModel(obj, "Name: {Name} BirthDate: {BirthDate} Age: {Age} {SomeJsonObject: 'Organic'}"));
         }
+
+        [Test]
+        public void FormatPrecedence()
+        {
+            var obj = new TestModelWithAttributes()
+            {
+                Age = 25,
+                BirthDate = new DateTime(1987, 04, 03),
+                Name = "Bobby"
+            };
+
+            // Assert the normal precendence.
+            Assert.AreEqual("Name: Bobby BirthDate: 4/3/1987 Age: 25.00 {Oranges}",
+                formatter.FormatModel(obj, "Name: {Name} BirthDate: {BirthDate} Age: {Age} {Oranges}"));
+
+            // Override the annotation, and assert the string format precedence.
+            Assert.AreEqual("Name: Bobby BirthDate: 1987/04/03 Age: 25.0 {Oranges}",
+                formatter.FormatModel(obj, "Name: {Name} BirthDate: {BirthDate:yyyy/MM/dd} Age: {Age:0.0} {Oranges}"));
+        }
     }
 }
