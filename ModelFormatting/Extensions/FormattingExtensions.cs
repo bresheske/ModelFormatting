@@ -8,14 +8,6 @@ namespace ModelFormatting.Extensions
 {
     public static class FormattingExtensions
     {
-        #region Constants
-
-        public const string DEFAULT_FORMAT = "{Key}: {Value}";
-        public const string DEFAULT_DELIMITER = ", ";
-
-        #endregion
-
-        #region Normal Formatting
 
         /// <summary>
         /// Extension for Formatting models (objects) into strings.
@@ -45,9 +37,6 @@ namespace ModelFormatting.Extensions
             return output;
         }
 
-        #endregion
-
-        #region Private Methods
 
         private static MatchCollection FindFormatMatches(string format)
         {
@@ -85,6 +74,5 @@ namespace ModelFormatting.Extensions
             return keyformat;
         }
 
-        #endregion
     }
 }
