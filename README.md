@@ -1,5 +1,4 @@
 <h1>ModelFormatting</h1>
-<hr />
 
 <strong>Model Formatting for C# POCO Objects.</strong>
 
