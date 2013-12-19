@@ -1,7 +1,7 @@
-ModelFormatting
-===============
+<h1>ModelFormatting</h1>
+<hr />
 
-Model Formatting for C# POCO Objects.
+<strong>Model Formatting for C# POCO Objects.</strong>
 
 <h2>Installation</h2>
 <p>Run this command in the package manager console:</p>
