@@ -2,6 +2,8 @@
 
 <strong>Model Formatting for C# POCO Objects.</strong>
 
+<p>Author: <a href="http://www.twitter.com/bresheske">@bresheske</a> Follow me or AMA!</p>
+
 <h2>Installation</h2>
 <p>Run this command in the package manager console:</p>
 <pre>install-package ModelFormatting.Extensions</pre>
