@@ -47,6 +47,9 @@ namespace ModelFormatting.Tests.Tests
         [Test]
         public void CoreEfficiencySpeed()
         {
+            // Test to assert the core has a major effect on the runtime speed of the FormatModel
+            // operation.
+
             // Speed tracking objects.
             var sw = new Stopwatch();
             var formatter = new DefaultModelFormatter();
