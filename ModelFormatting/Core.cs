@@ -36,6 +36,16 @@ namespace ModelFormatting
             TypeStore = new Dictionary<Type, Dictionary<string, string>>();
         }
 
+        public static bool IsRegistered<TModel>()
+        {
+            return Instance.TypeStore.ContainsKey(typeof(TModel));
+        }
+
+        public static void ClearModel<TModel>()
+        {
+            Instance.TypeStore.Remove(typeof(TModel));
+        }
+
         /// <summary>
         /// Registers and enumerates the properties of a
         /// POCO model. Stores the properties into the container
