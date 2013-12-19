@@ -1,6 +1,8 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
+# Visual Studio 2013
+VisualStudioVersion = 12.0.21005.1
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ModelFormatting", "ModelFormatting\ModelFormatting.csproj", "{902193D8-D5ED-4464-A006-BFF0C2EB69B7}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{BA414BCD-DFA0-4E96-9D34-3D114390E0F7}"
@@ -15,6 +17,11 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ModelFormatting.Tests", "ModelFormatting.Tests\ModelFormatting.Tests.csproj", "{B175A58A-8620-43BE-B397-CBBF76B73905}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ModelFormatting.WebTests", "ModelFormatting.WebTests\ModelFormatting.WebTests.csproj", "{B2A071D0-A9DB-4E98-8A69-0BB0190A2964}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{B370701F-039C-4B63-AAC4-7B9F770A4460}"
+	ProjectSection(SolutionItems) = preProject
+		README.md = README.md
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
