@@ -3,4 +3,6 @@ ModelFormatting
 
 ModelFormatting for C# POCO Objects.
 
-Please see http://www.resheske.net/projects/model-formatting for examples and usage.
+<h2>Installation</h2>
+<p>Run this command in the package manager console:</p>
+<pre>install-package ModelFormatting.Extensions</pre>
