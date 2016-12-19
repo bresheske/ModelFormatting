@@ -1,3 +1,5 @@
+## ModelFormatting was pretty great, but it currently lacks usage now that C# has string interpolation.  I recommend using that instead.
+
 <h1>ModelFormatting</h1>
 
 <strong>Model Formatting for C# POCO Objects.</strong>
